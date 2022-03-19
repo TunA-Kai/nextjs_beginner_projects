@@ -1,14 +1,15 @@
 import classNames from 'classnames'
+import Head from 'next/head'
+import Sidebar from '~/components/Sidebar'
 
 export default function Home() {
   return (
-    <div
-      className={classNames('m-2 text-3xl text-sky-600', {
-        'font-black': true,
-        'font-mono': false,
-      })}
-    >
-      Hello world
+    <div>
+      <Head>
+        <title>Whatsapp 2.0</title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Sidebar />
     </div>
   )
 }
