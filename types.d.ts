@@ -17,3 +17,10 @@ export interface TUserItem {
   lastSeen: Timestamp
   photoURL: string
 }
+
+export interface TMessageItem {
+  timestamp: Timestamp
+  userEmail: string
+  message: string
+  photoURL: string
+}

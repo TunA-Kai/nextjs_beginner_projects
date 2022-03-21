@@ -17,7 +17,7 @@ function Sidebar({}: SidebarProps) {
   const chatQuery = query(chatsColRef, where('users', 'array-contains', user.email))
   const [chatsSnapshot] = useCollection(chatQuery)
 
-  const chats = chatsSnapshot?.docs.map(doc => ({ ...doc.data(), id: doc.id })) as TChatItem[]
+  const chats = chatsSnapshot?.docs.map(doc => doc.data())
 
   async function createChat() {
     const input = prompt(
@@ -28,9 +28,10 @@ function Sidebar({}: SidebarProps) {
     if (!input || input === user.email || !validateEmail(input)) return
 
     // add chat into DB 'chats' collection if it doesn't exist
-    const chatDocRef = doc(chatsColRef, `${user.email}_${input}`)
+    const id = `${user.email}_${input}`
+    const chatDocRef = doc(chatsColRef, id)
     const chatDocSnap = await getDoc(chatDocRef)
-    if (!chatDocSnap.exists()) setDoc(chatDocRef, { users: [user.email, input] })
+    if (!chatDocSnap.exists()) setDoc(chatDocRef, { id, users: [user.email!, input] })
   }
 
   return (

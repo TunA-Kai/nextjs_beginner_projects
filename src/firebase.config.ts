@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { collection, getFirestore } from 'firebase/firestore'
+import { collection, CollectionReference, DocumentData, getFirestore } from 'firebase/firestore'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { TChatItem, TUserItem } from 'types'
+import { createCollection } from './utils/helpers/firebaseHelper'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,8 +20,9 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-const usersColRef = collection(db, 'users')
-const chatsColRef = collection(db, 'chats')
+
+const usersColRef = createCollection<TUserItem>('users')
+const chatsColRef = createCollection<TChatItem>('chats')
 
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider()
