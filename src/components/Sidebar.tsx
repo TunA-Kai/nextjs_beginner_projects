@@ -1,14 +1,13 @@
 import { ChatAltIcon, DotsVerticalIcon, SearchIcon } from '@heroicons/react/outline'
 import { signOut } from 'firebase/auth'
 import { doc, getDoc, query, setDoc, where } from 'firebase/firestore'
-import Image from 'next/image'
 import { useCollection } from 'react-firebase-hooks/firestore'
 import { TChatItem } from 'types'
 import { useUserContext } from '~/contexts/userContext'
 import { auth, chatsColRef } from '~/firebase.config'
 import { validateEmail } from '~/utils/helpers/emailValidator'
-import AvatarContainer from './AvatarContainer'
 import Chat from './Chat'
+import UserAvatar from './UserAvatar'
 
 interface SidebarProps {}
 
@@ -38,9 +37,7 @@ function Sidebar({}: SidebarProps) {
     <aside>
       <header className='sticky top-0 z-10 mx-4 flex h-20 items-center gap-4 border-b border-slate-200 bg-white'>
         <button className='mr-auto' onClick={() => signOut(auth)}>
-          <AvatarContainer>
-            <Image alt='avatar' src={user.photoURL!} width='100%' height='100%' />
-          </AvatarContainer>
+          <UserAvatar src={user.photoURL} />
         </button>
         <button>
           <ChatAltIcon className='h-8 w-8' />
