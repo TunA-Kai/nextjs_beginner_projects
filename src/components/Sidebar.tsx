@@ -1,4 +1,4 @@
-import { ChatAltIcon, DotsVerticalIcon, SearchIcon } from '@heroicons/react/outline'
+import { ChatAltIcon, DotsVerticalIcon, LogoutIcon, SearchIcon } from '@heroicons/react/outline'
 import { signOut } from 'firebase/auth'
 import { doc, getDoc, query, setDoc, where } from 'firebase/firestore'
 import { useCollection } from 'react-firebase-hooks/firestore'
@@ -36,15 +36,11 @@ function Sidebar({}: SidebarProps) {
 
   return (
     <aside>
-      <header className='sticky top-0 z-10 mx-4 flex h-20 items-center gap-4 border-b border-slate-200 bg-white'>
-        <button className='mr-auto' onClick={() => signOut(auth)}>
-          <UserAvatar src={user.photoURL} />
-        </button>
+      <header className='sticky top-0 z-10 mx-4 flex h-20 items-center justify-between gap-4 border-b border-slate-200 bg-white'>
+        <UserAvatar src={user.photoURL} />
+
         <button>
-          <ChatAltIcon className='h-8 w-8' />
-        </button>
-        <button>
-          <DotsVerticalIcon className='h-8 w-8' />
+          <LogoutIcon className='h-8 w-8' onClick={() => signOut(auth)} />
         </button>
       </header>
 
