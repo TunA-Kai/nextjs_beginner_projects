@@ -18,9 +18,14 @@ export interface TUserItem {
   photoURL: string
 }
 
-export interface TMessageItem {
+export interface TMessageItemDB {
   timestamp: Timestamp
   userEmail: string
   message: string
   photoURL: string
+}
+
+export interface TMessageItemCL extends TMessageItemDB {
+  id: string
+  timestamp: number | null //See readme(3)
 }
