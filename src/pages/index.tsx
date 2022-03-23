@@ -1,4 +1,3 @@
-import classNames from 'classnames'
 import Head from 'next/head'
 import Sidebar from '~/components/Sidebar'
 

@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app'
 import Image from 'next/image'
 import * as React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { TUserItem } from 'types'
 import { UserProvider } from '~/contexts/userContext'
 import { auth, usersColRef } from '~/firebase.config'
 import '~/styles/global.css'
@@ -17,9 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     if (user) {
       const { email, photoURL } = user
       const docRef = doc(usersColRef, user.uid)
-      setDoc(docRef, { email, lastSeen: serverTimestamp(), photoURL } as TUserItem, {
-        merge: true,
-      })
+      setDoc(docRef, { email, lastSeen: serverTimestamp(), photoURL }, { merge: true })
     }
   }, [user])
 
@@ -29,6 +26,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <Image alt='spinner' src='/spinner.svg' width={200} height={200} />
       </div>
     )
+
   if (!user) return <Login />
 
   return (
