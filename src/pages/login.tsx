@@ -14,13 +14,10 @@ function Login({}: LoginProps) {
 
   React.useEffect(() => {
     if (user) router.push({ pathname: '/' })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   function signIn() {
-    signInWithPopup(auth, provider)
-      .then(_ => router.push({ pathname: '/' }))
-      .catch(alert)
+    signInWithPopup(auth, provider).catch(alert)
   }
 
   return (
