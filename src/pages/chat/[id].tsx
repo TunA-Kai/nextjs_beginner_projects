@@ -1,4 +1,3 @@
-import { GetServerSideProps, GetServerSidePropsResult, GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import ChatScreen from '~/components/ChatScreen'

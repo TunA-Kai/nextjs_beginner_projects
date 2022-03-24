@@ -8,14 +8,7 @@ import { createCollection } from './utils/helpers/firebaseHelper'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyAtWp1SvkgBiHtYHyFoFVEJZHLTaNzuiCM',
-  authDomain: 'whatsapp-2-b3705.firebaseapp.com',
-  projectId: 'whatsapp-2-b3705',
-  storageBucket: 'whatsapp-2-b3705.appspot.com',
-  messagingSenderId: '1081949004743',
-  appId: '1:1081949004743:web:8f5308aaf61db8cf046fe2',
-}
+const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG as string)
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
