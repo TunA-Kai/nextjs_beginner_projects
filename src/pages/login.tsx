@@ -13,8 +13,8 @@ function Login({}: LoginProps) {
   const router = useRouter()
 
   React.useEffect(() => {
-    if (user) router.push({ pathname: '/' })
-  }, [user])
+    if (user) router.push({ pathname: (router.query.returnUrl ?? '/') as string })
+  }, [router, user])
 
   function signIn() {
     signInWithPopup(auth, provider).catch(alert)

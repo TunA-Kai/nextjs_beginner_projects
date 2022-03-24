@@ -1,11 +1,10 @@
-import { setDoc, serverTimestamp, doc } from 'firebase/firestore'
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
 import * as React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { UserProvider } from '~/contexts/userContext'
 import { auth, usersColRef } from '~/firebase.config'
-import Login from '~/pages/login'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 
 interface RouteGuardProps {
   children: React.ReactNode
@@ -29,10 +28,10 @@ function RouteGuard({ children }: RouteGuardProps) {
     if (!loading && !user && !inLoginPage) {
       router.push({
         pathname: '/login',
-        // query: { returnUrl: url },
+        query: { returnUrl: url },
       })
     }
-  }, [user, url, loading])
+  }, [user, url, loading, inLoginPage, router])
 
   if (loading)
     return (
@@ -43,7 +42,7 @@ function RouteGuard({ children }: RouteGuardProps) {
 
   if (inLoginPage) return <>{children}</>
 
-  return user && <UserProvider user={user}>{children}</UserProvider>
+  return user ? <UserProvider user={user}>{children}</UserProvider> : null
 }
 
 export default RouteGuard
