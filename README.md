@@ -1,3 +1,5 @@
 # Tutorial project
 
-https://youtu.be/svlEVg0To_c
+https://youtu.be/MqDlsjc8GLo
+
+- Shift + scroll to scroll horizontally
