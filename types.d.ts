@@ -4,3 +4,12 @@ declare module '*module.css' {
   }
   export default styles
 }
+
+interface TMovie {
+  id: number
+  title: string
+  overview: string
+  posterUrl: string
+  releaseDate: string
+  voteAverage: number
+}
